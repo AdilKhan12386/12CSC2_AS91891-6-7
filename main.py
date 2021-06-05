@@ -1,10 +1,6 @@
 #later information
 
-#self.image = Image.open("Gradhat.png") 
-#        picture = ImageTk.PhotoImage(self.img) 
- #       picture_label.configure(image = picture) 
-  #      picture_label.image = image
-   #s     picture_label.grid(row = 1)
+
 #self.var1=IntVar()
  #       root.configure(bg = background_color)
 #Pil Library for images. Use CMD in the search bar
@@ -68,32 +64,36 @@ class Nav:
 
         background_color="Darkolivegreen2"
 
-        self.quiz_frame=Frame(parent, bg = background_color, padx = 100, pady = 100)
+        self.quiz_frame=Frame(parent, bg = background_color, padx = 100, pady = 25)
         self.quiz_frame.grid()
 
         #Second Heading
         self.nav_label = Label(self.quiz_frame, text = "Welcome, please select one of the given resources",bd = 10, relief = "ridge", font = ("Ariel","25"))
-        self.nav_label.grid(row=0, padx = 225)
+        self.nav_label.grid(row=0, padx = 225, sticky = N)
+
+        #Gradhat Image temp replacement
+        self.irtr = Label(self.quiz_frame, text = "Work in progress", bd = 20, relief = "ridge", font = ("Ariel", "50"))
+        self.irtr.grid(row = 2, padx = 225, pady = 125)
 
         #Leaderboard Button
         self.Leader_button = Button(self.quiz_frame, text = "Leaderboard Page", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
                                        compound = "c", bg = "purple4", fg = "white", command = self.move_on)
-        self.Leader_button.grid(row = 4, column = 1, padx = 50, pady = 200, sticky = S)
+        self.Leader_button.grid(row = 4, padx = 20, sticky = S)
 
         #Resources Button
         self.resources_button = Button(self.quiz_frame, text = "Resources Page", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
                                        compound = "c", bg = "purple4", fg = "white", command = self.move_on)
-        self.resources_button.grid(row = 3, column = 0, padx = 75, pady = 200, sticky = W)
+        self.resources_button.grid(row = 3, padx = 40, sticky = W)
 
         #Quiz Button
         self.quiz_button = Button(self.quiz_frame, text = "Quiz Page", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
                                        compound = "c", bg = "purple4", fg = "white", command = self.move_on)
-        self.quiz_button.grid(row = 3, column = 2, padx = 25, pady = 200, sticky = E)
+        self.quiz_button.grid(row = 3, padx = 60, sticky = E)
 
         #Exit button
         self.exit_button = Button(self.quiz_frame, text = "Exit", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
                                   compound = "c", bg="Firebrick4", fg = "white", command = root.destroy)
-        self.exit_button.grid(row = 1, column = 0, sticky = NW)
+        self.exit_button.grid(row = 0, column = 0, sticky = NW)
 
     def move_on(self):
         if self.resources_button:
