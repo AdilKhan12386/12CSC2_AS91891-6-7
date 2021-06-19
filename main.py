@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import random
 
 math_score=0
@@ -11,22 +12,18 @@ general_score=0
 asked = []
 
 names_bank = []
-global math_quiz_questions
 
-
-global chosen_quiz
-
-global qnum
 
 def randomiser():
 
   global qnum
-  qnum = random.randint(1,10)
+
+  qnum = random.randint(1, 10)
 
   if qnum not in asked:
-          asked.append(qnum)
+    asked.append(qnum)
   elif qnum in asked:
-          randmiser()
+    randomiser()
 
   randomiser()   
 
@@ -123,25 +120,24 @@ class Signup:
         #continue button #gap for easy visability
         self.continue_button = Button(self.quiz_frame, text = "Continue",bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
                                         bg = "midnight blue", fg = "white", command = self.name_collection)
-        self.continue_button.grid(row = 3, padx = 50, pady = 200, sticky = E)
+        self.continue_button.grid(row = 4, padx = 50, pady = 200, sticky = E)
         
 
         #Exit button #gap for easy visability
         self.exit_button = Button(self.quiz_frame, text = "Exit", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
                                    bg="Firebrick4", fg = "white", command = root.destroy)
-        self.exit_button.grid(row = 3, padx = 50, pady = 200, sticky = W)
-    
+        self.exit_button.grid(row = 4, padx = 50, pady = 200, sticky = W)
 
+        
     def name_collection(self):
         name = self.entry_box.get()
-        if str.isalpha(name) == True and len(name) <=16:
+        if str.isalpha(name) == True and int(len(name)) <= 15:
             names_bank.append(name) 
             self.quiz_frame.destroy()
             Nav(root)
         else:
-            def error_message(self):
-                self.messagebox.error("error", "Please insert a username that is between 1-15 letters long")
-           
+          #Applying messagebox for boundry testing
+          messagebox.showerror("Error", "Please insert a username that is between 1-15 letters long")
 
 class Nav:
     def __init__(self,parent):
@@ -455,23 +451,23 @@ class quiz_options:
 
         if select_quiz == 1:
             chosen_quiz = math_quiz_questions
-            self.quiz_frame.destroy
+            self.quiz_frame.destroy()
             quiz_pg(root)
         elif select_quiz == 2:
             chosen_quiz = english_quiz_questions
-            self.quiz_frame.destroy
+            self.quiz_frame.destroy()
             quiz_pg(root)
         elif select_quiz == 3:
             chosen_quiz = physics_quiz_questions
-            self.quiz_frame.destroy
+            self.quiz_frame.destroy()
             quiz_pg(root)
         elif select_quiz == 4:
             chosen_quiz = chemistry_quiz_questions
-            self.quiz_frame.destroy
+            self.quiz_frame.destroy()
             quiz_pg(root)
         elif select_quiz == 5:
             chosen_quiz = math_quiz_questions
-            self.quiz_frame.destroy
+            self.quiz_frame.destroy()
             quiz_pg(root)
 
 class quiz_pg:
