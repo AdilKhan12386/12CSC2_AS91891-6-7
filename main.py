@@ -279,8 +279,88 @@ class math_res_pg:
         self.res_label = Label(self.quiz_frame, text = "Math Internal and External Notes",bd = 10, relief = "ridge", font = ("Ariel","25"))
         self.res_label.grid(row=0, padx = 225, sticky = N)
 
-        math_label_1 = Label(self.quiz_frame, text = "Math + Math = 2Math or Math^2. That's math right?", font = ("Ariel", "18"), bg = "white")
-        math_label_1.grid(row = 1, padx = 25, pady = 50)
+        math_label_1 = Label(self.quiz_frame, text = """Knowledge 1
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing""", font = ("Ariel", "14"), bg = "white")
+        math_label_1.grid(row = 1, padx = 25, pady = 50, sticky = W)
+
+        math_label_2 = Label(self.quiz_frame, text = """Knowledge 2
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing""", font = ("Ariel", "14"), bg = "white")
+        math_label_2.grid(row = 2, padx = 25, pady = 50, sticky = W)
+
+        math_label_3 = Label(self.quiz_frame, text = """Knowledge 3
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing""", font = ("Ariel", "14"), bg = "white")
+        math_label_3.grid(row = 3, padx = 25, pady = 50, sticky = W)
+
+        math_label_4 = Label(self.quiz_frame, text = """Knowledge 4
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing""", font = ("Ariel", "14"), bg = "white")
+        math_label_4.grid(row = 4, padx = 25, pady = 50, sticky = W)
+
+        math_label_5 = Label(self.quiz_frame, text = """Knowledge 5
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing""", font = ("Ariel", "14"), bg = "white")
+        math_label_5.grid(row = 1, padx = 25, pady = 50, sticky = E)
+
+        math_label_6 = Label(self.quiz_frame, text = """Knowledge 6
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing""", font = ("Ariel", "14"), bg = "white")
+        math_label_6.grid(row = 2, padx = 25, pady = 50, sticky = E)
+
+        math_label_7 = Label(self.quiz_frame, text = """Knowledge 7
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing""", font = ("Ariel", "14"), bg = "white")
+        math_label_7.grid(row = 3, padx = 25, pady = 50, sticky = E)
+
+        math_label_8 = Label(self.quiz_frame, text = """Knowledge 8
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing
+        amazing""", font = ("Ariel", "14"), bg = "white")
+        math_label_8.grid(row = 4, padx = 25, pady = 50, sticky = E)
+
+
+        root.maxsize(2000, 2000)
 
         #Return Button
         self.return_button = Button(self.quiz_frame, text = "Return", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
