@@ -275,29 +275,87 @@ class math_res_pg:
         self.quiz_frame=Frame(parent, bg = background_color, padx = 100, pady = 25)
         self.quiz_frame.grid()
 
+        root.maxsize(2000, 2500)
+
         #Resource heading
         self.res_label = Label(self.quiz_frame, text = "Math Internal and External Notes",bd = 10, relief = "ridge", font = ("Ariel","25"))
         self.res_label.grid(row=0, padx = 225, sticky = N)
 
         math_label_1 = Label(self.quiz_frame, text = """Knowledge 1
         amazing
-        amazing
-        amazing
-        amazing
-        amazing
-        amazing
-        amazing""", font = ("Ariel", "14"), bg = "white")
+        """, font = ("Ariel", "14"), bg = "white")
         math_label_1.grid(row = 1, padx = 25, pady = 50, sticky = W)
 
         math_label_2 = Label(self.quiz_frame, text = """Knowledge 2
         amazing
-        amazing
-        amazing
-        amazing
-        amazing
-        amazing
-        amazing""", font = ("Ariel", "14"), bg = "white")
+        """, font = ("Ariel", "14"), bg = "white")
         math_label_2.grid(row = 2, padx = 25, pady = 50, sticky = W)
+
+        math_label_3 = Label(self.quiz_frame, text = """Knowledge 3
+        amazing
+        """, font = ("Ariel", "14"), bg = "white")
+        math_label_3.grid(row = 3, padx = 25, pady = 50, sticky = W)
+
+        math_label_4 = Label(self.quiz_frame, text = """Knowledge 4
+        amazing
+        """, font = ("Ariel", "14"), bg = "white")
+        math_label_4.grid(row = 4, padx = 25, pady = 50, sticky = W)
+
+        math_label_5 = Label(self.quiz_frame, text = """Knowledge 5
+        amazing
+        """, font = ("Ariel", "14"), bg = "white")
+        math_label_5.grid(row = 1, padx = 25, pady = 50, sticky = E)
+
+        math_label_6 = Label(self.quiz_frame, text = """Knowledge 6
+        amazing
+        """, font = ("Ariel", "14"), bg = "white")
+        math_label_6.grid(row = 2, padx = 25, pady = 50, sticky = E)
+
+        math_label_7 = Label(self.quiz_frame, text = """Knowledge 7
+        amazing
+        """, font = ("Ariel", "14"), bg = "white")
+        math_label_7.grid(row = 3, padx = 25, pady = 50, sticky = E)
+
+        math_label_8 = Label(self.quiz_frame, text = """Knowledge 8
+        amazing
+        """, font = ("Ariel", "14"), bg = "white")
+        math_label_8.grid(row = 4, padx = 25, pady = 50, sticky = E)
+
+        #Next page button
+        self.next_pg = Button(self.quiz_frame, text = "Next", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
+                                     bg = "midnight blue", fg = "white", command = self.next_res_pg)
+        self.next_pg.grid(row = 3, sticky = SE)
+
+      
+        #Return Button
+        self.return_button = Button(self.quiz_frame, text = "Return", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
+                                     bg = "Firebrick4", fg = "white", command = self.return_to_res_options)
+        self.return_button.grid(row = 0, sticky = NW)
+
+
+    def return_to_res_options(self):
+        if self.return_to_res_options:
+            self.quiz_frame.destroy()
+            res_options(root)
+
+    def next_res_pg(self):
+        if self.next_pg:
+            self.quiz_frame.destroy()
+            math_res_pg_2(root)
+
+class math_res_pg_2:
+  def __init__ (self,parent):
+
+        background_color="Darkolivegreen2"
+
+        self.quiz_frame=Frame(parent, bg = background_color, padx = 100, pady = 25)
+        self.quiz_frame.grid()
+
+        root.maxsize(2000, 2000)
+
+        #Resource heading
+        self.res_label = Label(self.quiz_frame, text = "Math Internal and External Notes",bd = 10, relief = "ridge", font = ("Ariel","25"))
+        self.res_label.grid(row=0, padx = 225, sticky = N)
 
         math_label_3 = Label(self.quiz_frame, text = """Knowledge 3
         amazing
@@ -307,7 +365,7 @@ class math_res_pg:
         amazing
         amazing
         amazing""", font = ("Ariel", "14"), bg = "white")
-        math_label_3.grid(row = 3, padx = 25, pady = 50, sticky = W)
+        math_label_3.grid(row = 1, padx = 25, pady = 50, sticky = W)
 
         math_label_4 = Label(self.quiz_frame, text = """Knowledge 4
         amazing
@@ -317,27 +375,7 @@ class math_res_pg:
         amazing
         amazing
         amazing""", font = ("Ariel", "14"), bg = "white")
-        math_label_4.grid(row = 4, padx = 25, pady = 50, sticky = W)
-
-        math_label_5 = Label(self.quiz_frame, text = """Knowledge 5
-        amazing
-        amazing
-        amazing
-        amazing
-        amazing
-        amazing
-        amazing""", font = ("Ariel", "14"), bg = "white")
-        math_label_5.grid(row = 1, padx = 25, pady = 50, sticky = E)
-
-        math_label_6 = Label(self.quiz_frame, text = """Knowledge 6
-        amazing
-        amazing
-        amazing
-        amazing
-        amazing
-        amazing
-        amazing""", font = ("Ariel", "14"), bg = "white")
-        math_label_6.grid(row = 2, padx = 25, pady = 50, sticky = E)
+        math_label_4.grid(row = 2, padx = 25, pady = 50, sticky = W)
 
         math_label_7 = Label(self.quiz_frame, text = """Knowledge 7
         amazing
@@ -347,7 +385,7 @@ class math_res_pg:
         amazing
         amazing
         amazing""", font = ("Ariel", "14"), bg = "white")
-        math_label_7.grid(row = 3, padx = 25, pady = 50, sticky = E)
+        math_label_7.grid(row = 1, padx = 25, pady = 50, sticky = E)
 
         math_label_8 = Label(self.quiz_frame, text = """Knowledge 8
         amazing
@@ -357,20 +395,19 @@ class math_res_pg:
         amazing
         amazing
         amazing""", font = ("Ariel", "14"), bg = "white")
-        math_label_8.grid(row = 4, padx = 25, pady = 50, sticky = E)
+        math_label_8.grid(row = 2, padx = 25, pady = 50, sticky = E)
+
+        #Previous page button
+        self.prev_pg = Button(self.quiz_frame, text = "Back", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
+                                     bg = "midnight blue", fg = "white", command = self.prev_res_pg)
+        self.prev_pg.grid(row = 0, sticky = NW)
+
+  def prev_res_pg(self):
+    if self.prev_pg:
+      self.quiz_frame.destroy()
+      math_res_pg(root)
 
 
-        root.maxsize(2000, 2000)
-
-        #Return Button
-        self.return_button = Button(self.quiz_frame, text = "Return", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
-                                     bg = "Firebrick4", fg = "white", command = self.return_to_res_options)
-        self.return_button.grid(row = 0, sticky = NW)
-
-    def return_to_res_options(self):
-        if self.return_to_res_options:
-            self.quiz_frame.destroy()
-            res_options(root)
             
 class english_res_pg:
     def __init__ (self,parent):
