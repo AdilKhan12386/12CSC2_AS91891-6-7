@@ -25,19 +25,19 @@ def randomiser():
   elif qnum in asked:
     randomiser()
 
-  randomiser()   
+randomiser()   
 
 math_quiz_questions = {
-    1: ["?", "1", "2", "3", "4", "5", 1, "1"],
-    2: ["!", "1", "2", "3", "4", "5", 1, "1"],
-    3: ["@", "1", "2", "3", "4", "5", 1, "1"],
-    4: ["$", "1", "2", "3", "4", "5", 1, "1"],
-    5: ["%", "1", "2", "3", "4", "5", 1, "1"],
-    6: ["^", "1", "2", "3", "4", "5", 1, "1"],
-    7: ["&", "1", "2", "3", "4", "5" ,1, "1"],
-    8: ["*", "1", "2", "3", "4", "5", 1, "1"],
-    9: ["(", "1", "2", "3", "4", "5", 1, "1"],
-    10: [")", "1", "2", "3", "4", "5", 1, "1"],
+    1: ["?", "1", "2", "3", "4", "5", 1, "1", "Math"],
+    2: ["!", "1", "2", "3", "4", "5", 1, "1", "Math"],
+    3: ["@", "1", "2", "3", "4", "5", 1, "1", "Math"],
+    4: ["$", "1", "2", "3", "4", "5", 1, "1", "Math"],
+    5: ["%", "1", "2", "3", "4", "5", 1, "1", "Math"],
+    6: ["^", "1", "2", "3", "4", "5", 1, "1", "Math"],
+    7: ["&", "1", "2", "3", "4", "5" ,1, "1", "Math"],
+    8: ["*", "1", "2", "3", "4", "5", 1, "1", "Math"],
+    9: ["(", "1", "2", "3", "4", "5", 1, "1", "Math"],
+    10: [")", "1", "2", "3", "4", "5", 1, "1", "Math"],
     }
 
 english_quiz_questions = {
@@ -80,6 +80,19 @@ chemistry_quiz_questions = {
     }
 
 biology_quiz_questions = {
+    1: ["?", "1", "2", "3", "4", "5", 1, "1"],
+    2: ["!", "1", "2", "3", "4", "5", 1, "1"],
+    3: ["@", "1", "2", "3", "4", "5", 1, "1"],
+    4: ["$", "1", "2", "3", "4", "5", 1, "1"],
+    5: ["%", "1", "2", "3", "4", "5", 1, "1"],
+    6: ["^", "1", "2", "3", "4", "5", 1, "1"],
+    7: ["&", "1", "2", "3", "4", "5" ,1, "1"],
+    8: ["*", "1", "2", "3", "4", "5", 1, "1"],
+    9: ["(", "1", "2", "3", "4", "5", 1, "1"],
+    10: [")", "1", "2", "3", "4", "5", 1, "1"],
+    }
+
+general_quiz_questions = {
     1: ["?", "1", "2", "3", "4", "5", 1, "1"],
     2: ["!", "1", "2", "3", "4", "5", 1, "1"],
     3: ["@", "1", "2", "3", "4", "5", 1, "1"],
@@ -524,6 +537,10 @@ class quiz_options:
         self.res_label = Label(self.quiz_frame, text = "Select a subject to test your knowledge against",bd = 10, relief = "ridge", font = ("Ariel","25"))
         self.res_label.grid(row=0, padx = 225, sticky = N)
 
+        #Question image temp
+        self.irtr = Label(self.quiz_frame, text = "Work in progress", bd = 10, relief = "ridge", font = ("Ariel", "15"))
+        self.irtr.grid(row = 3)
+
 
         self.var1 = IntVar()
 
@@ -551,6 +568,11 @@ class quiz_options:
         self.biology_button = Radiobutton(self.quiz_frame, text = "Biology", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
                                    bg="Purple4", fg = "white", value = 5, variable = self.var1, indicator = 0, command = self.quiz_selection)
         self.biology_button.grid(row = 4, padx = 50, pady = 100, sticky = SE)
+
+        #General Quiz Buttton
+        self.general_button = Radiobutton(self.quiz_frame, text = "General",  bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
+                                   bg="Purple4", fg = "white", value = 6, variable = self.var1, indicator = 0, command = self.quiz_selection)
+        self.general_button.grid(row = 4, padx = 50, pady = 100)
 
         #Return Button
         self.return_button = Button(self.quiz_frame, text = "Return", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
@@ -586,6 +608,10 @@ class quiz_options:
             chosen_quiz = math_quiz_questions
             self.quiz_frame.destroy()
             quiz_pg(root)
+        elif select_quiz == 6:
+            chosen_quiz = general_quiz_questions
+            self.quiz_frame.destroy()
+            quiz_pg(root)
 
 class quiz_pg:
     def __init__ (self,parent):
@@ -598,7 +624,7 @@ class quiz_pg:
        
         #Question label (Question for user to answer)
         self.question_label = Label(self.quiz_frame, text = chosen_quiz[qnum][0], font = ("Ariel", "20", "bold"), bg = background_color)
-        self.question_label.grid(row=0, padx = 225, sticky = N)
+        self.question_label.grid(row=1, padx = 225, sticky = N)
 
         self.var1 = IntVar()
 
@@ -636,9 +662,9 @@ class quiz_pg:
         self.score_label = Label(self.quiz_frame, text = "", font = ("Ariel", "15", "bold"), bg = background_color)
         self.score_label.grid(row = 7, sticky = W)
 
-        #Error Label 2 (For which ever quiz is being run, if they don't select an option)
-        self.error_label = Label(self.quiz_frame, text = "", font = ("Ariel", "16", "bold"), fg = "red")
-        self.error_label.grid(row = 1)
+        #Topic Label (Reminds consumer which quiz they are taking)
+        self.topic_label = Label(self.quiz_frame, text = chosen_quiz[qnum][8], font = ("Ariel", "16", "bold"), fg = "red")
+        self.topic_label.grid(row = 0)
 
     
 
@@ -646,13 +672,12 @@ class quiz_pg:
     def questions_changer(self):
         randomiser()
         self.var1.set(0)
-        self.next_question.config(text = chosen_quiz[qnum][0])
+        self.question_label.config(text = chosen_quiz[qnum][0])
         self.op1.config(text = chosen_quiz[qnum][1])
         self.op2.config(text = chosen_quiz[qnum][2])
         self.op3.config(text = chosen_quiz[qnum][3])
         self.op4.config(text = chosen_quiz[qnum][4])
         self.op5.config(text = chosen_quiz[qnum][5])
-        self.score_label.config(text = quiz_runner)
 
 
     def quiz_runner(self):
@@ -664,38 +689,97 @@ class quiz_pg:
         global general_score
         score_label = self.score_label
         choice = self.var1.get()
-        score = chosen_quiz[qnum][7]
         #This first nested if is for the last question, whether it's right or wrong
         if len(asked)>9:
             if choice == chosen_quiz[qnum][6]:
-                score_label += 1
+              if chosen_quiz == math_quiz_questions:
+                math_score += 1
+                score_label.config(text = math_score)
+                self.confirm_button.config(text = "Confirm")
+              elif chosen_quiz == english_quiz_questions:
+                english_score += 1
+                score_label.config(text = english_score)
+                self.confirm_button.config(text = "Confirm")
+              elif chosen_quiz == physics_quiz_questions:
+                physics_score += 1
+                score_label.config(text = physics_score)
+                self.confirm_button.config(text = "Confirm")
+              elif chosen_quiz == chemistry_quiz_questions:
+                chemistry_score += 1
+                score_label.config(text = chemistry_score)
+                self.confirm_button.config(text = "Confirm")
+              else:
+                biology_score += 1
+                score_label.config(text = biology_score)
                 self.confirm_button.config(text = "Confirm")
             else:
-                score_label += 0
-                score_label.config(text = "Sorry but the correct answer was: " + chosen_quiz[qnum][7])
-                self.confirm_button.config(text = "Confirm")
+              score_label += 0
+              score_label.config(text = "Sorry but the correct answer was: " + chosen_quiz[qnum][7])
+              self.confirm_button.config(text = "Confirm")
         #This represents the choices made for anything other than the last question.
         else:
             if choice == 0:
-                self.error_label.config(text = "Oops. You forgot to select an option. Try again.")
+                #Messagebox appears if they don't select an answer
+                messagebox.showerror("Error", "Please select an answer before confirming")
                 choice = self.var1.get()
             else:
-                if choice == chosen_quiz[qnum][6]:
-                    if chosen_quiz == math_quiz_questions:
-                        math_score += 1
-                    elif chosen_quiz == english_quiz_questions:
-                        english_score += 1
-                    elif chosen_quiz == physics_quiz_quesstions:
-                        physics_score += 1
-                    elif chosen_quiz == chemistry_quiz_questions:
-                        chemistry_score += 1
-                    elif chosen_quiz == biology_quiz_questions:
-                        biology_score += 1
-                    else:
-                        questions_changer()
+              if choice == chosen_quiz[qnum][6]:
+                if chosen_quiz == math_quiz_questions:
+                  math_score += 1
+                  score_label.config(text = math_score)
+                  self.confirm_button.config(text = "Confirm")
+                  self.questions_changer()
+                elif chosen_quiz == english_quiz_questions:
+                  english_score += 1
+                  score_label.config(text = english_score)
+                  self.confirm_button.config(text = "Confirm")
+                  self.questions_changer()
+                elif chosen_quiz == physics_quiz_questions:
+                  physics_score += 1
+                  score_label.config(text = physics_score)
+                  self.confirm_button.config(text = "Confirm")
+                  self.questions_changer()
+                elif chosen_quiz == chemistry_quiz_questions:
+                  chemistry_score += 1
+                  score_label.config(text = chemistry_score)
+                  self.confirm_button.config(text = "Confirm")
+                  self.questions_changer()
                 else:
-                    score_label.config(text = "Sorry but the correct answer was: " + chosen_quiz[qnum][7])
-                    self.questions_changer()
+                  biology_score += 1
+                  score_label.config(text = biology_score)
+                  self.confirm_button.config(text = "Confirm")
+                  self.questions_changer()
+              else:
+                if chosen_quiz == math_quiz_questions:
+                  math_score += 0
+                  score_label.config(text = math_score)
+                  score_label.config(text = "Sorry but the correct answer was: " + chosen_quiz[qnum][7])
+                  self.confirm_button.config(text = "Confirm")
+                  self.questions_changer()
+                elif chosen_quiz == english_quiz_questions:
+                  english_score += 0
+                  score_label.config(text = english_score)
+                  score_label.config(text = "Sorry but the correct answer was: " + chosen_quiz[qnum][7])
+                  self.confirm_button.config(text = "Confirm")
+                  self.questions_changer()
+                elif chosen_quiz == physics_quiz_questions:
+                  physics_score += 0
+                  score_label.config(text = physics_score)
+                  score_label.config(text = "Sorry but the correct answer was: " + chosen_quiz[qnum][7])
+                  self.confirm_button.config(text = "Confirm")
+                  self.questions_changer()
+                elif chosen_quiz == chemistry_quiz_questions:
+                  chemistry_score += 0
+                  score_label.config(text = chemistry_score)
+                  score_label.config(text = "Sorry but the correct answer was: " + chosen_quiz[qnum][7])
+                  self.confirm_button.config(text = "Confirm")
+                  self.questions_changer()
+                else:
+                  biology_score += 0
+                  score_label.config(text = biology_score)
+                  score_label.config(text = "Sorry but the correct answer was: " + chosen_quiz[qnum][7])
+                  self.confirm_button.config(text = "Confirm")
+                  self.questions_changer()
            
 
         
