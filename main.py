@@ -629,34 +629,34 @@ class quiz_pg:
         self.var1 = IntVar()
 
         #Option 1 Button
-        self.op1 = Radiobutton(self.quiz_frame, text = chosen_quiz[qnum][1], font = ("Ariel", "15"), bg = background_color, value = 1, padx = 25,
-                               pady = 10, variable = self.var1, indicator = 0, background = "white")
+        self.op1 = Radiobutton(self.quiz_frame, text = chosen_quiz[qnum][1], relief = "raised", bd = 4, font = ("Ariel", "15"), bg = background_color, value = 1, padx = 25,
+                               pady = 10, variable = self.var1, background = "white")
         self.op1.grid(row = 2, sticky = W)
 
         #Option 2 Button
-        self.op2 = Radiobutton(self.quiz_frame, text = chosen_quiz[qnum][2], font = ("Ariel", "15"), bg = background_color, value = 2, padx = 25,
-                               pady = 10, variable = self.var1, indicator = 0, background = "white")
+        self.op2 = Radiobutton(self.quiz_frame, text = chosen_quiz[qnum][2], relief = "raised", bd = 4, font = ("Ariel", "15"), bg = background_color, value = 2, padx = 25,
+                               pady = 10, variable = self.var1, background = "white")
         self.op2.grid(row = 3, sticky = W)
 
         #Option 3 Button
-        self.op3 = Radiobutton(self.quiz_frame, text = chosen_quiz[qnum][3], font = ("Ariel", "15"), bg = background_color, value = 3, padx = 25,
-                               pady = 10, variable = self.var1, indicator = 0, background = "white")
+        self.op3 = Radiobutton(self.quiz_frame, text = chosen_quiz[qnum][3], relief = "raised", bd = 4, font = ("Ariel", "15"), bg = background_color, value = 3, padx = 25,
+                               pady = 10, variable = self.var1, background = "white")
         self.op3.grid(row = 4, sticky = W)
 
         #Option 4 Button
-        self.op4 = Radiobutton(self.quiz_frame, text = chosen_quiz[qnum][4], font = ("Ariel", "15"), bg = background_color, value = 4, padx = 25,
-                               pady = 10, variable = self.var1, indicator = 0, background = "white")
+        self.op4 = Radiobutton(self.quiz_frame, text = chosen_quiz[qnum][4], relief = "raised", bd = 4, font = ("Ariel", "15"), bg = background_color, value = 4, padx = 25,
+                               pady = 10, variable = self.var1, background = "white")
         self.op4.grid(row = 5, sticky = W)
 
         #Option 5 Button
-        self.op5 = Radiobutton(self.quiz_frame, text = chosen_quiz[qnum][5], font = ("Ariel", "15"), bg = background_color, value = 5, padx = 25,
-                               pady = 10, variable = self.var1, indicator = 0, background = "white")
+        self.op5 = Radiobutton(self.quiz_frame, text = chosen_quiz[qnum][5], relief = "raised", bd = 4, font = ("Ariel", "15"), bg = background_color, value = 5, padx = 25,
+                               pady = 10, variable = self.var1, background = "white")
         self.op5.grid(row = 6, sticky = W)
 
         #Confirm Button 
         self.confirm_button = Button(self.quiz_frame, text = 'Confirm', bd = 10, relief = "raised", font = ("Ariel", "15", "bold"),
                                      bg = "midnight blue", fg = "white", command = self.quiz_runner)
-        self.confirm_button.grid(row = 6 , sticky = E)
+        self.confirm_button.grid(row = 7 , sticky = E)
 
         #score label (shows score while consumer is taking the test)
         self.score_label = Label(self.quiz_frame, text = "", font = ("Ariel", "15", "bold"), bg = background_color)
@@ -696,26 +696,63 @@ class quiz_pg:
                 math_score += 1
                 score_label.config(text = math_score)
                 self.confirm_button.config(text = "Confirm")
+                self.quiz_frame.destroy()
+                score_display(root)
               elif chosen_quiz == english_quiz_questions:
                 english_score += 1
                 score_label.config(text = english_score)
                 self.confirm_button.config(text = "Confirm")
+                self.quiz_frame.destroy()
+                score_display(root)
               elif chosen_quiz == physics_quiz_questions:
                 physics_score += 1
                 score_label.config(text = physics_score)
                 self.confirm_button.config(text = "Confirm")
+                self.quiz_frame.destroy()
+                score_display(root)
               elif chosen_quiz == chemistry_quiz_questions:
                 chemistry_score += 1
                 score_label.config(text = chemistry_score)
                 self.confirm_button.config(text = "Confirm")
+                self.quiz_frame.destroy()
+                score_display(root)
               else:
                 biology_score += 1
                 score_label.config(text = biology_score)
                 self.confirm_button.config(text = "Confirm")
+                self.quiz_frame.destroy()
+                score_display(root)
             else:
-              score_label += 0
-              score_label.config(text = "Sorry but the correct answer was: " + chosen_quiz[qnum][7])
-              self.confirm_button.config(text = "Confirm")
+              if chosen_quiz == math_quiz_questions:
+                math_score += 0
+                score_label.config(text = math_score)
+                self.confirm_button.config(text = "Confirm")
+                self.quiz_frame.destroy()
+                score_display(root)
+              elif chosen_quiz == english_quiz_questions:
+                english_score += 0
+                score_label.config(text = english_score)
+                self.confirm_button.config(text = "Confirm")
+                self.quiz_frame.destroy()
+                score_display(root)
+              elif chosen_quiz == physics_quiz_questions:
+                physics_score += 0
+                score_label.config(text = physics_score)
+                self.confirm_button.config(text = "Confirm")
+                self.quiz_frame.destroy()
+                score_display(root)
+              elif chosen_quiz == chemistry_quiz_questions:
+                chemistry_score += 0
+                score_label.config(text = chemistry_score)
+                self.confirm_button.config(text = "Confirm")
+                self.quiz_frame.destroy()
+                score_display(root)
+              else:
+                biology_score += 0
+                score_label.config(text = biology_score)
+                self.confirm_button.config(text = "Confirm")
+                self.quiz_frame.destroy()
+                score_display(root)
         #This represents the choices made for anything other than the last question.
         else:
             if choice == 0:
@@ -780,6 +817,22 @@ class quiz_pg:
                   score_label.config(text = "Sorry but the correct answer was: " + chosen_quiz[qnum][7])
                   self.confirm_button.config(text = "Confirm")
                   self.questions_changer()
+
+
+class score_display:
+  def __init__ (self,parent):
+    
+      background_color="Darkolivegreen2"
+
+      self.quiz_frame=Frame(parent, bg = background_color, padx = 100, pady = 25)
+      self.quiz_frame.grid()
+
+       
+      #Display label (Like the title of the page)
+      self.display_label = Label(self.quiz_frame, text = "Noice work", font = ("Ariel", "20", "bold"), bg = background_color)
+      self.display_label.grid(row=1, padx = 225, sticky = N)
+
+      
            
 
         
