@@ -828,13 +828,131 @@ class score_display:
       self.quiz_frame.grid()
 
        
-      #Display label (Like the title of the page)
-      self.display_label = Label(self.quiz_frame, text = "Noice work", font = ("Ariel", "20", "bold"), bg = background_color)
+      #Display heading label
+      self.display_label = Label(self.quiz_frame, text = "Congratulations on finishing the {} quiz".format(chosen_quiz[qnum][8]), font = ("Ariel", "20", "bold"), bg = background_color)
       self.display_label.grid(row=1, padx = 225, sticky = N)
 
-      
-           
+      #Final Score Label
+      self.results_label = Label(self.quiz_frame, text = "", font = ("Ariel", "18"), bg = background_color)
+      self.results_label.grid(row = 2, padx = 150)
 
+      #Button to show results (activate results command)
+      self.results_button = Button(text = "Click here to find out your results", bd = 10, relief = "raised", font = ("Ariel", "15", "bold"),
+                                     bg = "midnight blue", fg = "white", command = self.results)
+      self.results_button.grid(row = 2)
+
+      #return to nav button
+      self.nav_return_button = Button(text = "Return", bd = 10, relief = "raised", font = ("Ariel", "15"),
+                                  bg = "firebrick4", fg = "white", command = self.nav_return)
+      self.nav_return_button.grid(row = 0, sticky  = NW)
+
+  def results(self):
+    self.results_button.destroy() 
+    if chosen_quiz == math_quiz_questions:
+      self.results_label.config(text = "Maths score:" + str(math_score))
+    elif chosen_quiz == english_quiz_questions:
+      self.results_label.config(text = "English score:" + str(english_score))
+    elif chosen_quiz == physics_quiz_questions:
+      self.results_label.config(text = "Physics score:" + str(physics_score))
+    elif chosen_quiz == chemistry_quiz_questions:
+      self.results_label.config(text = "Chemistry score:" + str(chemistry_score))
+    elif chosen_quiz == biology_quiz_questions:
+      self.results_label.config(text = "Biology score:" + str(biology_score))
+    #Just in case something goes wrong
+    else:
+      messagebox.showerror("Error", "Something went wrong")
+
+  #function to properly exit the quiz and choose another option/resource
+  def nav_return(self):
+    self.quiz_frame.destroy()
+    self.nav_return_button.destroy()
+    asked.clear()
+    Nav(root)
+
+class Leaderboard:
+  def __init__ (self,parent):
+  
+      background_color="Darkolivegreen2"
+
+      self.quiz_frame=Frame(parent, bg = background_color, padx = 100, pady = 25)
+      self.quiz_frame.grid()
+
+       
+      self.var1 = IntVar()
+
+        #Display heading label
+      self.display_label = Label(self.quiz_frame, text = "Leaderboard", font = ("Ariel", "20", "bold"), bg = background_color)
+      self.display_label.grid(row=0, padx = 225, sticky = N)
+
+        #Math Button
+      self.math_button = Radiobutton(self.quiz_frame, text = "Math", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
+                                  bg="Purple4", fg = "white", value = 1, variable = self.var1, indicator = 0, command = self.lead_selection)
+      self.math_button.grid(row = 1, padx = 50, pady = 100, sticky = NW)
+
+        #English Button
+      self.english_button = Radiobutton(self.quiz_frame, text = "English", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
+                                 bg="Purple4", fg = "white", value = 2, variable = self.var1, indicator = 0, command = self.lead_selection)
+      self.english_button.grid(row = 1, padx = 50, pady = 100)
+
+        #Physics Button
+      self.physics_button = Radiobutton(self.quiz_frame, text = "Physics", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
+                                 bg="Purple4", fg = "white", value = 3, variable = self.var1, indicator = 0, command = self.lead_selection)
+      self.physics_button.grid(row = 1, padx = 50, pady = 100, sticky = NE)
+
+        #Chemistry Button
+      self.chemistry_button = Radiobutton(self.quiz_frame, text = "Chemistry", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
+                                 bg="Purple4", fg = "white", value = 4, variable = self.var1, indicator = 0, command = self.lead_selection)
+      self.chemistry_button.grid(row = 2, padx = 50, pady = 100, sticky = SW)
+
+        #Biology Button
+      self.biology_button = Radiobutton(self.quiz_frame, text = "Biology", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
+                                 bg="Purple4", fg = "white", value = 5, variable = self.var1, indicator = 0, command = self.lead_selection)
+      self.biology_button.grid(row = 2, padx = 50, pady = 100, sticky = SE)
+
+        #General Quiz Buttton
+      self.general_button = Radiobutton(self.quiz_frame, text = "General",  bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
+                                 bg="Purple4", fg = "white", value = 6, variable = self.var1, indicator = 0, command = self.lead_selection)
+      self.general_button.grid(row = 2, padx = 50, pady = 100)
+
+        #Return Button
+      self.return_button = Button(self.quiz_frame, text = "Return", bd = 10, relief = "raised", font = ("Ariel", "20", "bold"),
+                                   bg = "Firebrick4", fg = "white", command = self.nav_return)
+      self.return_button.grid(row = 0, sticky = NW)
+
+  def lead_selection(self):
+      name=names_bank[0]
+      file = open("Leaderboard.txt", 'a')
+      file.write(str(math_score))
+      file.write(" - ")
+      file.write(name + "\n")
+      file.close()
+
+      inputfile = open("Leaderboard.txt", 'r')
+      linelist = inputfile.readlines()
+      linelist.sort()
+      top = []
+      top5 = (linelist[-5:])
+      for line in top5:
+        point = line.split(" - ")
+        top.append((int(point[0]), point[1]))
+      file.close()
+      top.sort()
+      top.reverse()
+      returnstring = ""
+      for i in range(len(top)):
+        returnstring += "{} - {}\n".format(top[i][0], top[i][1])
+        print(returnstring)
+
+      open_leaderboard_options = End()
+      open_leaderboard_options.diplsy_heading.config(text = returnstring)
+
+  def nav_return(self):
+      self.quiz_frame.destroy()
+      self.return_button.destroy()
+      asked.clear()
+      Nav(root)
+
+      
         
 if __name__ == "__main__":
     root = Tk()
